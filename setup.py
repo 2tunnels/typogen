@@ -13,6 +13,12 @@ setup(
     author_email='2tunnels@gmail.com',
     url='https://github.com/2tunnels/typogen',
     packages=['typogen'],
+    install_requires=['click>=6.7,<7.0'],
+    entry_points={
+        'console_scripts': [
+            'typogen=typogen.cli:main',
+        ]
+    },
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
     license='MIT',
     classifiers=(

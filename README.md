@@ -23,6 +23,8 @@ pipenv install typogen
 
 ## Examples
 
+### Python
+
 ```python
 >>> import typogen
 >>> typogen.skip_letter('cat')
@@ -37,6 +39,32 @@ pipenv install typogen
 {'ca5', 'cxt', 'cqt', 'vat', 'cay', 'fat', 'dat', 'xat', 'ca6', 'cah', 'cag', 'caf', 'cwt', 'cst', 'car', 'czt'}
 >>> typogen.inserted_key('cat')
 {'caft', 'caty', 'caxt', 'catf', 'cast', 'cagt', 'cvat', 'cawt', 'catg', 'cwat', 'ca5t', 'cxat', 'catr', 'cayt', 'cat5', 'cath', 'xcat', 'cat6', 'vcat', 'ca6t', 'cart', 'cfat', 'cazt', 'caqt', 'dcat', 'fcat', 'csat', 'cdat', 'czat', 'cqat', 'caht'}
+```
+
+### CLI
+
+All available typos
+
+```
+$ typogen cat
+```
+
+Only skip letter
+
+```
+$ typogen cat --skip-letter
+```
+
+Both double letter and reverse letters
+
+```
+$ typogen cat --double-letter --reverse-letters
+```
+
+Check out other options
+
+```
+$ typogen --help
 ```
 
 ## Test
