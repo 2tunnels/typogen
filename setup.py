@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='typogen',
-    version='0.0.1',
+    version='0.0.2',
     description='Generate keyboard typos based on keyword.',
     long_description=readme,
     long_description_content_type='text/markdown',
