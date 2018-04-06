@@ -77,35 +77,61 @@ class TestDoubleLetters:
         assert typogen.double_letters('   ') == set()
 
 
-def test_reverse_letters():
-    assert list(typogen.reverse_letters('cat')) == ['act', 'cta']
-    assert list(typogen.reverse_letters('frog')) == ['rfog', 'forg', 'frgo']
+class TestReverseLetters:
+    def test_simple(self):
+        assert typogen.reverse_letters('cat') == {'act', 'cta'}
+        assert typogen.reverse_letters('frog') == {'rfog', 'forg', 'frgo'}
+
+    def test_double(self):
+        assert typogen.reverse_letters('bull') == {'ubll', 'blul'}
+
+    def test_with_space(self):
+        assert typogen.reverse_letters('cat frog') == {
+            'act frog',
+            'cta frog',
+            'ca tfrog',
+            'catf rog',
+            'cat rfog',
+            'cat forg',
+            'cat frgo',
+        }
+
+    def test_empty(self):
+        assert typogen.reverse_letters('') == set()
+
+    def test_multiple_spaces(self):
+        assert typogen.reverse_letters('   cat   ') == {'act', 'cta'}
+        assert typogen.reverse_letters('   frog   ') == {'rfog', 'forg', 'frgo'}
+        assert typogen.reverse_letters('   bull   ') == {'ubll', 'blul'}
+        assert typogen.reverse_letters('   cat   frog   ') == {
+            'act frog',
+            'cta frog',
+            'ca tfrog',
+            'catf rog',
+            'cat rfog',
+            'cat forg',
+            'cat frgo',
+        }
+        assert typogen.reverse_letters('   ') == set()
 
 
-def test_reverse_letters_double():
-    assert list(typogen.reverse_letters('bull')) == ['ubll', 'blul']
+class TestSkipSpaces:
+    def test_simple(self):
+        assert typogen.skip_spaces('blue invisible unicorn') == {
+            'blueinvisible unicorn',
+            'blue invisibleunicorn',
+        }
 
+    def test_no_spaces(self):
+        assert typogen.skip_spaces('cat') == set()
 
-def test_skip_spaces():
-    assert list(typogen.skip_spaces('blue invisible unicorn')) == [
-        'blueinvisible unicorn',
-        'blue invisibleunicorn',
-    ]
+    def test_empty(self):
+        assert typogen.skip_spaces('') == set()
 
-
-def test_skip_spaces_not_stripped():
-    assert list(typogen.skip_spaces(' blue invisible unicorn ')) == [
-        'blueinvisible unicorn',
-        'blue invisibleunicorn',
-    ]
-
-
-def test_skip_spaces_multiple_spaces():
-    assert list(typogen.skip_spaces('blue   invisible   unicorn')) == [
-        'blueinvisible unicorn',
-        'blue invisibleunicorn',
-    ]
-
-
-def test_skip_spaces_no_spaces():
-    assert list(typogen.skip_spaces('cat')) == []
+    def test_multiple_spaces(self):
+        assert typogen.skip_spaces('   blue   invisible   unicorn   ') == {
+            'blueinvisible unicorn',
+            'blue invisibleunicorn',
+        }
+        assert typogen.skip_spaces('   cat   ') == set()
+        assert typogen.skip_spaces('   ') == set()

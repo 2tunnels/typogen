@@ -32,19 +32,26 @@ def double_letters(keyword):
 
 
 def reverse_letters(keyword):
-    seen = [keyword]
+    keyword = keyword.strip()
+    keyword = re.sub(r'\s+', ' ', keyword)
+
+    typos = []
 
     for i in range(len(keyword) - 1):
-        typo = keyword[0:i] + keyword[i + 1] + keyword[i] + keyword[i + 2:]
+        # do not reverse if the same letter
+        if keyword[i] == keyword[i + 1]:
+            continue
 
-        if typo not in seen:
-            seen.append(typo)
-            yield typo
+        typos.append(keyword[0:i] + keyword[i + 1] + keyword[i] + keyword[i + 2:])
+
+    return set(typos)
 
 
 def skip_spaces(keyword: str):
     keyword = keyword.strip()
     keyword = re.sub(r'\s+', ' ', keyword)
+
+    typos = []
 
     start = 0
 
@@ -54,6 +61,8 @@ def skip_spaces(keyword: str):
         except ValueError:
             break
 
-        yield keyword[0:index] + keyword[index + 1:]
+        typos.append(keyword[0:index] + keyword[index + 1:])
 
         start = index + 1
+
+    return set(typos)
