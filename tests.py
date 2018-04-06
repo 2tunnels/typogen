@@ -46,8 +46,8 @@ class TestSkipLetter:
 
 class TestDoubleLetters:
     def test_simple(self):
-        assert typogen.double_letters('cat') == {'ccat', 'caat', 'catt'}
-        assert typogen.double_letters('frog') == {
+        assert typogen.double_letter('cat') == {'ccat', 'caat', 'catt'}
+        assert typogen.double_letter('frog') == {
             'ffrog',
             'frrog',
             'froog',
@@ -55,10 +55,10 @@ class TestDoubleLetters:
         }
 
     def test_double(self):
-        assert typogen.double_letters('bull') == {'bbull', 'buull', 'bulll'}
+        assert typogen.double_letter('bull') == {'bbull', 'buull', 'bulll'}
 
     def test_with_space(self):
-        assert typogen.double_letters('cat frog') == {
+        assert typogen.double_letter('cat frog') == {
             'ccat frog',
             'caat frog',
             'catt frog',
@@ -69,22 +69,22 @@ class TestDoubleLetters:
         }
 
     def test_empty(self):
-        assert typogen.double_letters('') == set()
+        assert typogen.double_letter('') == set()
 
     def test_multiple_spaces(self):
-        assert typogen.double_letters('   cat   ') == {'ccat', 'caat', 'catt'}
-        assert typogen.double_letters('   frog   ') == {
+        assert typogen.double_letter('   cat   ') == {'ccat', 'caat', 'catt'}
+        assert typogen.double_letter('   frog   ') == {
             'ffrog',
             'frrog',
             'froog',
             'frogg',
         }
-        assert typogen.double_letters('   bull   ') == {
+        assert typogen.double_letter('   bull   ') == {
             'bbull',
             'buull',
             'bulll',
         }
-        assert typogen.double_letters('   cat   frog   ') == {
+        assert typogen.double_letter('   cat   frog   ') == {
             'ccat frog',
             'caat frog',
             'catt frog',
@@ -93,7 +93,7 @@ class TestDoubleLetters:
             'cat froog',
             'cat frogg',
         }
-        assert typogen.double_letters('   ') == set()
+        assert typogen.double_letter('   ') == set()
 
 
 class TestReverseLetters:
