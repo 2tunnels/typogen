@@ -1,7 +1,9 @@
 # Typogen
 
 [![Travis](https://img.shields.io/travis/2tunnels/typogen.svg)](https://travis-ci.org/2tunnels/typogen)
-
+[![PyPI](https://img.shields.io/pypi/v/typogen.svg)](https://pypi.python.org/pypi/typogen)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/typogen.svg)](https://pypi.python.org/pypi/typogen)
+[![PyPI - License](https://img.shields.io/pypi/l/typogen.svg)](https://pypi.python.org/pypi/typogen)
 
 Generate keyboard typos based on keyword.
 
