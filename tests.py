@@ -25,7 +25,12 @@ class TestSkipLetter:
 
     def test_multiple_spaces(self):
         assert typogen.skip_letter('   cat   ') == {'at', 'ct', 'ca'}
-        assert typogen.skip_letter('   frog   ') == {'rog', 'fog', 'frg', 'fro'}
+        assert typogen.skip_letter('   frog   ') == {
+            'rog',
+            'fog',
+            'frg',
+            'fro',
+        }
         assert typogen.skip_letter('   bull   ') == {'ull', 'bll', 'bul'}
         assert typogen.skip_letter('   cat   frog   ') == {
             'at frog',
@@ -42,7 +47,12 @@ class TestSkipLetter:
 class TestDoubleLetters:
     def test_simple(self):
         assert typogen.double_letters('cat') == {'ccat', 'caat', 'catt'}
-        assert typogen.double_letters('frog') == {'ffrog', 'frrog', 'froog', 'frogg'}
+        assert typogen.double_letters('frog') == {
+            'ffrog',
+            'frrog',
+            'froog',
+            'frogg',
+        }
 
     def test_double(self):
         assert typogen.double_letters('bull') == {'bbull', 'buull', 'bulll'}
@@ -63,8 +73,17 @@ class TestDoubleLetters:
 
     def test_multiple_spaces(self):
         assert typogen.double_letters('   cat   ') == {'ccat', 'caat', 'catt'}
-        assert typogen.double_letters('   frog   ') == {'ffrog', 'frrog', 'froog', 'frogg'}
-        assert typogen.double_letters('   bull   ') == {'bbull', 'buull', 'bulll'}
+        assert typogen.double_letters('   frog   ') == {
+            'ffrog',
+            'frrog',
+            'froog',
+            'frogg',
+        }
+        assert typogen.double_letters('   bull   ') == {
+            'bbull',
+            'buull',
+            'bulll',
+        }
         assert typogen.double_letters('   cat   frog   ') == {
             'ccat frog',
             'caat frog',
@@ -101,7 +120,11 @@ class TestReverseLetters:
 
     def test_multiple_spaces(self):
         assert typogen.reverse_letters('   cat   ') == {'act', 'cta'}
-        assert typogen.reverse_letters('   frog   ') == {'rfog', 'forg', 'frgo'}
+        assert typogen.reverse_letters('   frog   ') == {
+            'rfog',
+            'forg',
+            'frgo',
+        }
         assert typogen.reverse_letters('   bull   ') == {'ubll', 'blul'}
         assert typogen.reverse_letters('   cat   frog   ') == {
             'act frog',
