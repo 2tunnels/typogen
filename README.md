@@ -3,7 +3,7 @@
 [![Travis](https://img.shields.io/travis/2tunnels/typogen.svg)](https://travis-ci.org/2tunnels/typogen)
 
 
-Generate typos based on keyword.
+Generate keyboard typos based on keyword.
 
 ## Install
 
