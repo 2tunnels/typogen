@@ -2,6 +2,8 @@ import re
 
 
 def skip_letter(keyword):
+    keyword = keyword.strip()
+
     seen = []
 
     for i in range(len(keyword)):
