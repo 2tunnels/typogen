@@ -121,3 +121,19 @@ def nearest_keys(key):
         return [k.upper() for k in keys]
 
     return keys
+
+
+def missed_key(keyword):
+    keyword = keyword.strip()
+    keyword = re.sub(r'\s+', ' ', keyword)
+
+    typos = []
+
+    for i in range(len(keyword)):
+        if keyword[i].isspace():
+            continue
+
+        for key in nearest_keys(keyword[i]):
+            typos.append(keyword[0:i] + key + keyword[i + 1:])
+
+    return set(typos)

@@ -283,3 +283,83 @@ class TestNearestKeys:
     def test_m(self):
         assert typogen.nearest_keys('m') == ['n', 'j', 'k']
         assert typogen.nearest_keys('M') == ['N', 'J', 'K']
+
+
+class TestMissedKey:
+    def test_simple(self):
+        assert typogen.missed_key('cat') == {
+            'xat', 'dat', 'fat', 'vat',
+            'cqt', 'cwt', 'cst', 'cxt',
+            'czt', 'car', 'ca5', 'ca6',
+            'cay', 'cah', 'cag', 'caf',
+        }
+        assert typogen.missed_key('frog') == {
+            'drog', 'rrog', 'trog', 'grog', 'vrog',
+            'crog', 'feog', 'f4og', 'f5og', 'ftog',
+            'fgog', 'ffog', 'fdog', 'frig', 'fr9g',
+            'fr0g', 'frpg', 'frlg', 'frkg', 'frof',
+            'frot', 'froy', 'froh', 'frob', 'frov',
+        }
+
+    def test_double(self):
+        assert typogen.missed_key('bull') == {
+            'vull', 'gull', 'hull', 'null',
+            'byll', 'b7ll', 'b8ll', 'bill',
+            'bkll', 'bjll', 'bhll', 'bukl',
+            'buol', 'bupl', 'bulk', 'bulo',
+            'bulp',
+        }
+
+    def test_with_space(self):
+        assert typogen.missed_key('cat frog') == {
+            'xat frog', 'dat frog', 'fat frog', 'vat frog',
+            'cqt frog', 'cwt frog', 'cst frog', 'cxt frog',
+            'czt frog', 'car frog', 'ca5 frog', 'ca6 frog',
+            'cay frog', 'cah frog', 'cag frog', 'caf frog',
+            'cat drog', 'cat rrog', 'cat trog', 'cat grog',
+            'cat vrog', 'cat crog', 'cat feog', 'cat f4og',
+            'cat f5og', 'cat ftog', 'cat fgog', 'cat ffog',
+            'cat fdog', 'cat frig', 'cat fr9g', 'cat fr0g',
+            'cat frpg', 'cat frlg', 'cat frkg', 'cat frof',
+            'cat frot', 'cat froy', 'cat froh', 'cat frob',
+            'cat frov',
+        }
+
+    def test_empty(self):
+        assert typogen.missed_key('') == set()
+
+    def test_multiple_spaces(self):
+        assert typogen.missed_key('   cat   ') == {
+            'xat', 'dat', 'fat', 'vat',
+            'cqt', 'cwt', 'cst', 'cxt',
+            'czt', 'car', 'ca5', 'ca6',
+            'cay', 'cah', 'cag', 'caf',
+        }
+        assert typogen.missed_key('   frog   ') == {
+            'drog', 'rrog', 'trog', 'grog', 'vrog',
+            'crog', 'feog', 'f4og', 'f5og', 'ftog',
+            'fgog', 'ffog', 'fdog', 'frig', 'fr9g',
+            'fr0g', 'frpg', 'frlg', 'frkg', 'frof',
+            'frot', 'froy', 'froh', 'frob', 'frov',
+        }
+        assert typogen.missed_key('   bull   ') == {
+            'vull', 'gull', 'hull', 'null',
+            'byll', 'b7ll', 'b8ll', 'bill',
+            'bkll', 'bjll', 'bhll', 'bukl',
+            'buol', 'bupl', 'bulk', 'bulo',
+            'bulp',
+        }
+        assert typogen.missed_key('   cat   frog   ') == {
+            'xat frog', 'dat frog', 'fat frog', 'vat frog',
+            'cqt frog', 'cwt frog', 'cst frog', 'cxt frog',
+            'czt frog', 'car frog', 'ca5 frog', 'ca6 frog',
+            'cay frog', 'cah frog', 'cag frog', 'caf frog',
+            'cat drog', 'cat rrog', 'cat trog', 'cat grog',
+            'cat vrog', 'cat crog', 'cat feog', 'cat f4og',
+            'cat f5og', 'cat ftog', 'cat fgog', 'cat ffog',
+            'cat fdog', 'cat frig', 'cat fr9g', 'cat fr0g',
+            'cat frpg', 'cat frlg', 'cat frkg', 'cat frof',
+            'cat frot', 'cat froy', 'cat froh', 'cat frob',
+            'cat frov',
+        }
+        assert typogen.missed_key('   ') == set()
