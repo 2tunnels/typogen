@@ -3,26 +3,32 @@ import re
 
 def skip_letter(keyword):
     keyword = keyword.strip()
+    keyword = re.sub(r'\s+', ' ', keyword)
 
-    seen = []
+    typos = []
 
     for i in range(len(keyword)):
-        typo = keyword[0:i] + keyword[i + 1:]
+        if keyword[i].isspace():
+            continue
 
-        if typo not in seen:
-            seen.append(typo)
-            yield typo
+        typos.append(keyword[0:i] + keyword[i + 1:])
+
+    return set(typos)
 
 
 def double_letters(keyword):
-    seen = []
+    keyword = keyword.strip()
+    keyword = re.sub(r'\s+', ' ', keyword)
+
+    typos = []
 
     for i in range(len(keyword)):
-        typo = keyword[0:i + 1] + keyword[i] + keyword[i + 1:]
+        if keyword[i].isspace():
+            continue
 
-        if typo not in seen:
-            seen.append(typo)
-            yield typo
+        typos.append(keyword[0:i + 1] + keyword[i] + keyword[i + 1:])
+
+    return set(typos)
 
 
 def reverse_letters(keyword):
