@@ -1,8 +1,8 @@
-## Typogen
+# Typogen
 
 Generate typos based on keyword.
 
-### Install
+## Install
 
 Using [pip](https://pip.pypa.io/en/stable/)
 
@@ -16,7 +16,7 @@ Using [pipenv](https://docs.pipenv.org/) (it's amazing)
 pipenv install typogen
 ```
 
-### Examples
+## Examples
 
 ```python
 >>> import typogen
