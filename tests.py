@@ -117,6 +117,7 @@ class TestReverseLetters:
 
 class TestSkipSpaces:
     def test_simple(self):
+        assert typogen.skip_spaces('cat frog') == {'catfrog'}
         assert typogen.skip_spaces('blue invisible unicorn') == {
             'blueinvisible unicorn',
             'blue invisibleunicorn',
@@ -129,6 +130,7 @@ class TestSkipSpaces:
         assert typogen.skip_spaces('') == set()
 
     def test_multiple_spaces(self):
+        assert typogen.skip_spaces('   cat   frog   ') == {'catfrog'}
         assert typogen.skip_spaces('   blue   invisible   unicorn   ') == {
             'blueinvisible unicorn',
             'blue invisibleunicorn',
