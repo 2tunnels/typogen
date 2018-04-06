@@ -42,7 +42,14 @@ def reverse_letters(keyword):
         if keyword[i] == keyword[i + 1]:
             continue
 
-        typos.append(keyword[0:i] + keyword[i + 1] + keyword[i] + keyword[i + 2:])
+        typo = '{head}{second}{first}{tail}'.format(
+            head=keyword[0:i],
+            second=keyword[i + 1],
+            first=keyword[i],
+            tail=keyword[i + 2:]
+        )
+
+        typos.append(typo)
 
     return set(typos)
 
@@ -135,5 +142,22 @@ def missed_key(keyword):
 
         for key in nearest_keys(keyword[i]):
             typos.append(keyword[0:i] + key + keyword[i + 1:])
+
+    return set(typos)
+
+
+def inserted_key(keyword):
+    keyword = keyword.strip()
+    keyword = re.sub(r'\s+', ' ', keyword)
+
+    typos = []
+
+    for i in range(len(keyword)):
+        if keyword[i].isspace():
+            continue
+
+        for key in nearest_keys(keyword[i]):
+            typos.append(keyword[0:i] + key + keyword[i] + keyword[i + 1:])
+            typos.append(keyword[0:i] + keyword[i] + key + keyword[i + 1:])
 
     return set(typos)

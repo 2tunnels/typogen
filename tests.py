@@ -363,3 +363,111 @@ class TestMissedKey:
             'cat frov',
         }
         assert typogen.missed_key('   ') == set()
+
+
+class TestInsertedKey:
+    def test_simple(self):
+        assert typogen.inserted_key('cat') == {
+            'xcat', 'cxat', 'dcat', 'cdat', 'fcat',
+            'cfat', 'vcat', 'cvat', 'cqat', 'caqt',
+            'cwat', 'cawt', 'csat', 'cast', 'caxt',
+            'czat', 'cazt', 'cart', 'catr', 'ca5t',
+            'cat5', 'ca6t', 'cat6', 'cayt', 'caty',
+            'caht', 'cath', 'cagt', 'catg', 'caft',
+            'catf',
+        }
+        assert typogen.inserted_key('frog') == {
+            'dfrog', 'fdrog', 'rfrog', 'frrog', 'tfrog',
+            'ftrog', 'gfrog', 'fgrog', 'vfrog', 'fvrog',
+            'cfrog', 'fcrog', 'ferog', 'freog', 'f4rog',
+            'fr4og', 'f5rog', 'fr5og', 'frtog', 'frgog',
+            'ffrog', 'frfog', 'frdog', 'friog', 'froig',
+            'fr9og', 'fro9g', 'fr0og', 'fro0g', 'frpog',
+            'fropg', 'frlog', 'frolg', 'frkog', 'frokg',
+            'frofg', 'frogf', 'frotg', 'frogt', 'froyg',
+            'frogy', 'frohg', 'frogh', 'frobg', 'frogb',
+            'frovg', 'frogv',
+        }
+
+    def test_double(self):
+        assert typogen.inserted_key('bull') == {
+            'vbull', 'bvull', 'gbull', 'bgull', 'hbull',
+            'bhull', 'nbull', 'bnull', 'byull', 'buyll',
+            'b7ull', 'bu7ll', 'b8ull', 'bu8ll', 'biull',
+            'buill', 'bkull', 'bukll', 'bjull', 'bujll',
+            'buhll', 'bulkl', 'buoll', 'bulol', 'bupll',
+            'bulpl', 'bullk', 'bullo', 'bullp',
+        }
+
+    def test_with_space(self):
+        assert typogen.inserted_key('cat frog') == {
+            'xcat frog', 'cxat frog', 'dcat frog', 'cdat frog', 'fcat frog',
+            'cfat frog', 'vcat frog', 'cvat frog', 'cqat frog', 'caqt frog',
+            'cwat frog', 'cawt frog', 'csat frog', 'cast frog', 'caxt frog',
+            'czat frog', 'cazt frog', 'cart frog', 'catr frog', 'ca5t frog',
+            'cat5 frog', 'ca6t frog', 'cat6 frog', 'cayt frog', 'caty frog',
+            'caht frog', 'cath frog', 'cagt frog', 'catg frog', 'caft frog',
+            'catf frog', 'cat dfrog', 'cat fdrog', 'cat rfrog', 'cat frrog',
+            'cat tfrog', 'cat ftrog', 'cat gfrog', 'cat fgrog', 'cat vfrog',
+            'cat fvrog', 'cat cfrog', 'cat fcrog', 'cat ferog', 'cat freog',
+            'cat f4rog', 'cat fr4og', 'cat f5rog', 'cat fr5og', 'cat frtog',
+            'cat frgog', 'cat ffrog', 'cat frfog', 'cat frdog', 'cat friog',
+            'cat froig', 'cat fr9og', 'cat fro9g', 'cat fr0og', 'cat fro0g',
+            'cat frpog', 'cat fropg', 'cat frlog', 'cat frolg', 'cat frkog',
+            'cat frokg', 'cat frofg', 'cat frogf', 'cat frotg', 'cat frogt',
+            'cat froyg', 'cat frogy', 'cat frohg', 'cat frogh', 'cat frobg',
+            'cat frogb', 'cat frovg', 'cat frogv',
+        }
+
+    def test_empty(self):
+        assert typogen.inserted_key('') == set()
+
+    def test_multiple_spaces(self):
+        assert typogen.inserted_key('   cat   ') == {
+            'xcat', 'cxat', 'dcat', 'cdat', 'fcat',
+            'cfat', 'vcat', 'cvat', 'cqat', 'caqt',
+            'cwat', 'cawt', 'csat', 'cast', 'caxt',
+            'czat', 'cazt', 'cart', 'catr', 'ca5t',
+            'cat5', 'ca6t', 'cat6', 'cayt', 'caty',
+            'caht', 'cath', 'cagt', 'catg', 'caft',
+            'catf',
+        }
+        assert typogen.inserted_key('   frog   ') == {
+            'dfrog', 'fdrog', 'rfrog', 'frrog', 'tfrog',
+            'ftrog', 'gfrog', 'fgrog', 'vfrog', 'fvrog',
+            'cfrog', 'fcrog', 'ferog', 'freog', 'f4rog',
+            'fr4og', 'f5rog', 'fr5og', 'frtog', 'frgog',
+            'ffrog', 'frfog', 'frdog', 'friog', 'froig',
+            'fr9og', 'fro9g', 'fr0og', 'fro0g', 'frpog',
+            'fropg', 'frlog', 'frolg', 'frkog', 'frokg',
+            'frofg', 'frogf', 'frotg', 'frogt', 'froyg',
+            'frogy', 'frohg', 'frogh', 'frobg', 'frogb',
+            'frovg', 'frogv',
+        }
+        assert typogen.inserted_key('   bull   ') == {
+            'vbull', 'bvull', 'gbull', 'bgull', 'hbull',
+            'bhull', 'nbull', 'bnull', 'byull', 'buyll',
+            'b7ull', 'bu7ll', 'b8ull', 'bu8ll', 'biull',
+            'buill', 'bkull', 'bukll', 'bjull', 'bujll',
+            'buhll', 'bulkl', 'buoll', 'bulol', 'bupll',
+            'bulpl', 'bullk', 'bullo', 'bullp',
+        }
+        assert typogen.inserted_key('   cat   frog   ') == {
+            'xcat frog', 'cxat frog', 'dcat frog', 'cdat frog', 'fcat frog',
+            'cfat frog', 'vcat frog', 'cvat frog', 'cqat frog', 'caqt frog',
+            'cwat frog', 'cawt frog', 'csat frog', 'cast frog', 'caxt frog',
+            'czat frog', 'cazt frog', 'cart frog', 'catr frog', 'ca5t frog',
+            'cat5 frog', 'ca6t frog', 'cat6 frog', 'cayt frog', 'caty frog',
+            'caht frog', 'cath frog', 'cagt frog', 'catg frog', 'caft frog',
+            'catf frog', 'cat dfrog', 'cat fdrog', 'cat rfrog', 'cat frrog',
+            'cat tfrog', 'cat ftrog', 'cat gfrog', 'cat fgrog', 'cat vfrog',
+            'cat fvrog', 'cat cfrog', 'cat fcrog', 'cat ferog', 'cat freog',
+            'cat f4rog', 'cat fr4og', 'cat f5rog', 'cat fr5og', 'cat frtog',
+            'cat frgog', 'cat ffrog', 'cat frfog', 'cat frdog', 'cat friog',
+            'cat froig', 'cat fr9og', 'cat fro9g', 'cat fr0og', 'cat fro0g',
+            'cat frpog', 'cat fropg', 'cat frlog', 'cat frolg', 'cat frkog',
+            'cat frokg', 'cat frofg', 'cat frogf', 'cat frotg', 'cat frogt',
+            'cat froyg', 'cat frogy', 'cat frohg', 'cat frogh', 'cat frobg',
+            'cat frogb', 'cat frovg', 'cat frogv',
+        }
+        assert typogen.inserted_key('   ') == set()
