@@ -18,3 +18,14 @@ def double_letters(keyword):
         if typo not in seen:
             seen.append(typo)
             yield typo
+
+
+def reverse_letters(keyword):
+    seen = [keyword]
+
+    for i in range(len(keyword) - 1):
+        typo = keyword[0:i] + keyword[i + 1] + keyword[i] + keyword[i + 2:]
+
+        if typo not in seen:
+            seen.append(typo)
+            yield typo

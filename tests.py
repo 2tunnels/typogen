@@ -17,3 +17,12 @@ def test_double_letters():
 
 def test_double_letters_double():
     assert list(typogen.double_letters('bull')) == ['bbull', 'buull', 'bulll']
+
+
+def test_reverse_letters():
+    assert list(typogen.reverse_letters('cat')) == ['act', 'cta']
+    assert list(typogen.reverse_letters('frog')) == ['rfog', 'forg', 'frgo']
+
+
+def test_reverse_letters_double():
+    assert list(typogen.reverse_letters('bull')) == ['ubll', 'blul']
