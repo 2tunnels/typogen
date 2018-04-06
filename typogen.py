@@ -1,3 +1,6 @@
+import re
+
+
 def skip_letter(keyword):
     seen = []
 
@@ -29,3 +32,20 @@ def reverse_letters(keyword):
         if typo not in seen:
             seen.append(typo)
             yield typo
+
+
+def skip_spaces(keyword: str):
+    keyword = keyword.strip()
+    keyword = re.sub(r'\s+', ' ', keyword)
+
+    start = 0
+
+    while True:
+        try:
+            index = keyword.index(' ', start)
+        except ValueError:
+            break
+
+        yield keyword[0:index] + keyword[index + 1:]
+
+        start = index + 1

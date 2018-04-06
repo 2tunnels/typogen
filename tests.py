@@ -26,3 +26,28 @@ def test_reverse_letters():
 
 def test_reverse_letters_double():
     assert list(typogen.reverse_letters('bull')) == ['ubll', 'blul']
+
+
+def test_skip_spaces():
+    assert list(typogen.skip_spaces('blue invisible unicorn')) == [
+        'blueinvisible unicorn',
+        'blue invisibleunicorn',
+    ]
+
+
+def test_skip_spaces_not_stripped():
+    assert list(typogen.skip_spaces(' blue invisible unicorn ')) == [
+        'blueinvisible unicorn',
+        'blue invisibleunicorn',
+    ]
+
+
+def test_skip_spaces_multiple_spaces():
+    assert list(typogen.skip_spaces('blue   invisible   unicorn')) == [
+        'blueinvisible unicorn',
+        'blue invisibleunicorn',
+    ]
+
+
+def test_skip_spaces_no_spaces():
+    assert list(typogen.skip_spaces('cat')) == []
